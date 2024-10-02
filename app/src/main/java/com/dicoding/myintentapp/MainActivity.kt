@@ -1,6 +1,7 @@
 package com.dicoding.myintentapp
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val btnMoveWithObject:Button = findViewById(R.id.btn_move_activity_object)
         btnMoveWithObject.setOnClickListener(this)
+
+        val btnDialPhone:Button = findViewById(R.id.btn_dial_number)
+        btnDialPhone.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -50,6 +54,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 val moveWithObjectActivity = Intent(this@MainActivity, MoveWithObjectActivity::class.java)
                 moveWithObjectActivity.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person)
                 startActivity(moveWithObjectActivity)
+            }
+
+            R.id.btn_dial_number -> {
+                val phoneNumber = "081213456869"
+                val dialPhoneIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+                startActivity(dialPhoneIntent)
             }
         }
     }
